@@ -1,6 +1,9 @@
 package cn.cncoders.baseproject.config;
 
+import cn.cncoders.baseproject.component.MyLocalResolver;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -11,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @Date 2019/6/26
  */
 @Configuration
-public class MyConfig implements WebMvcConfigurer {
+public class MyMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -19,6 +22,11 @@ public class MyConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("login");
         registry.addViewController("/index.html").setViewName("login");
 
+    }
+
+    @Bean
+    public LocaleResolver localeResolver() {
+        return new MyLocalResolver();
     }
 
 
